@@ -1,0 +1,118 @@
+.container {
+  margin: auto;
+  text-align: center;
+  background-color: #dcdcdc;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.title {
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.event-item {
+  border: 1px solid #969090;
+  border-radius: 5px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.event-item h4 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.event-item p {
+  color: #666;
+}
+
+.pagination {
+  margin-top: 1rem;
+}
+
+.pagination button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #1a73e8;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination button:hover {
+  background-color: #1253b4;
+}
+
+/* Items Per Page section */
+.items-per-page-section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.items-per-page-section label {
+  margin-right: 0.5rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+.items-per-page-section select {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.items-per-page-section select:hover {
+  background-color: #f2f2f2;
+}
+
+/* Filter input */
+.filter-input {
+  margin-bottom: 1rem;
+}
+
+.filter-input input {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.filter-input input::placeholder {
+  color: #999;
+}
+
+.filter-input input:hover {
+  background-color: #f2f2f2;
+}
+
+
+#img {
+  object-fit: cover;  
+}
+
+.product-image {
+  object-fit: contain;
+  height: 200px; 
+  margin-top: 25px;
+}

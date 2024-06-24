@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Conditional display without ng-template -->
+    <ng-container *ngIf="!userRole">
+      <h1>Welcome to the store</h1>
+      <div class="navbar-buttons">
+        <button type="button" class="btn btn-primary" routerLink="/login">Login</button>
+        <button type="button" class="btn btn-primary" routerLink="/register">Register</button>
+      </div>
+    </ng-container>
+
+<!-- Conditional display with ng-template for the loggedIn state -->
+<ng-container *ngIf="userRole; else notLoggedIn">
+  <h1>{{ welcomeMessage }}</h1> <!-- Display the welcome message -->
+  <div class="navbar-buttons logged-in-message">
+    <button type="button" class="btn btn-primary" (click)="doLogout()">Logout</button>
+    <button type="button" class="btn btn-primary" routerLink="/list-products">List of products</button>
+    <!-- Cart Icon within submenu for hover interaction -->
+    <div class="submenu">
+      <!-- Cart icon with specified ID for CSS targeting -->
+      <img src="./../assets/img/Cart/shopping-cart_256_supervista_general.png" id="img-carro" width="64" (click)="navigateToCart()">
+      <!-- Dropdown content container -->
+      <div id="carro">
+        <app-cart-summary></app-cart-summary> <!-- This will contain the summary details -->
+      </div>
+    </div>
+  </div>
+</ng-container>
+    <!-- Alternate content when not logged in -->
+    <ng-template #notLoggedIn>
+      <div class="welcome-message">
+        Please login or register.
+      </div>
+    </ng-template>
+  </div>
+</nav>
+<br>
+<div>
+  <router-outlet></router-outlet>
+</div>

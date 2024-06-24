@@ -1,0 +1,86 @@
+<div class="container">
+  <h3 class="title form">Register form</h3>
+  <form [formGroup]="myForm" class="form" (ngSubmit)="submit()">
+    <!-- Username -->
+    <div class="form-group">
+      <label>Username:</label>
+      <input class="form-control" type="text" formControlName="username">
+      <span class="red-font" *ngIf="myForm.get('username')?.touched && myForm.get('username')?.invalid && myForm.get('username')?.errors?.['required']">* Username is required</span>
+      <span class="red-font" *ngIf="myForm.get('username')?.touched && myForm.get('username')?.invalid && myForm.get('username')?.errors?.['minlength']">* Minimum 6 characters</span>
+      <span class="red-font" *ngIf="myForm.get('username')?.touched && myForm.get('username')?.invalid && myForm.get('username')?.errors?.['pattern']">* Only letters allowed</span>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" class="form-control" formControlName="password">
+      <span class="red-font" *ngIf="myForm.get('password')?.touched && myForm.get('password')?.invalid && myForm.get('password')?.errors?.['required']">* Password is required</span>
+      <span class="red-font" *ngIf="myForm.get('password')?.touched && myForm.get('password')?.invalid && myForm.get('password')?.errors?.['minlength']">* Minimum 8 characters</span>
+      <span class="red-font" *ngIf="myForm.get('password')?.touched && myForm.get('password')?.invalid && myForm.get('password')?.errors?.['pattern']">* Must contain at least one letter and one number</span>
+    </div>
+
+    <!-- Repeat Password -->
+    <div class="form-group">
+      <label>Repeat password:</label>
+      <input type="password" class="form-control" formControlName="confirmPassword">
+      <span class="red-font" *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.invalid && myForm.get('confirmPassword')?.errors?.['required']">* Confirmation password is required</span>
+      <span class="red-font" *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.invalid && myForm.get('confirmPassword')?.errors?.['mustMatch']">* Passwords must match</span>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" class="form-control" formControlName="correo">
+      <span class="red-font" *ngIf="myForm.get('correo')?.touched && myForm.get('correo')?.invalid && myForm.get('correo')?.errors?.['required']">* Email is required</span>
+      <span class="red-font" *ngIf="myForm.get('correo')?.touched && myForm.get('correo')?.invalid && myForm.get('correo')?.errors?.['email']">* Invalid email format</span>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label>Phone:</label>
+      <input type="text" class="form-control" formControlName="phone">
+      <span class="red-font" *ngIf="myForm.get('phone')?.touched && myForm.get('phone')?.invalid && myForm.get('phone')?.errors?.['required']">* Phone number is required</span>
+      <span class="red-font" *ngIf="myForm.get('phone')?.touched && myForm.get('phone')?.invalid && myForm.get('phone')?.errors?.['pattern']">* Invalid phone number format</span>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label>Gender:</label>
+      <input type="radio" formControlName="gender" value="Male"> Male
+      <input type="radio" formControlName="gender" value="Female"> Female
+      <input type="radio" formControlName="gender" value="Other"> Other
+      <span class="red-font" *ngIf="myForm.get('gender')?.touched && myForm.get('gender')?.invalid && myForm.get('gender')?.errors?.['required']">* Gender is required</span>
+    </div>
+
+    <!-- Country -->
+    <div class="form-group">
+      <label>Country:</label>
+      <select class="form-control" formControlName="country">
+        <option value="">Spain</option>
+        <option value="">Canada</option>
+        <option value="">United States</option>
+      </select>
+      <span class="red-font" *ngIf="myForm.get('country')?.touched && myForm.get('country')?.invalid && myForm.get('country')?.errors?.['required']">* Country is required</span>
+    </div>
+
+    <!-- Interests -->
+    <div class="form-group">
+      <label>Interests:</label>
+      <div *ngFor="let interest of informacio; let i = index">
+        <label>
+          <input type="checkbox" [formControlName]="interest"> {{ interest }}
+        </label>
+      </div>
+      <span class="red-font" *ngIf="myForm.get('interests')?.touched && myForm.get('interests')?.invalid && myForm.get('interests')?.errors?.['required']">* Select at least 3 interests</span>
+    </div>
+
+
+    <!-- Accept Terms -->
+    <div class="form-group">
+      <input type="checkbox" formControlName="acceptTerms"> Accept data management policy
+      <span class="red-font" *ngIf="myForm.get('acceptTerms')?.touched && myForm.get('acceptTerms')?.invalid && myForm.get('acceptTerms')?.errors?.['required']">* You must accept the terms</span>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="myForm.invalid" type="submit">Submit</button>
+  </form>
+</div>

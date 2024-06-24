@@ -1,0 +1,67 @@
+<div class="container">
+    <h3 class="title">List of Products</h3>
+
+    <!-- Items per page selector -->
+    <div class="items-per-page-section">
+        <label for="itemsPerPage">Items Per Page:</label>
+        <select [(ngModel)]="itemsPerPage" (ngModelChange)="changeItemsPerPage($event)">
+            <option [value]="5">5</option>
+            <option [value]="10">10</option>
+            <option [value]="15">15</option>
+            <option [value]="20">20</option>
+          </select>
+      </div>
+      
+    <!-- Input field for filtering by name or description -->
+    <div class="filter-input">
+        <label for="filterByNameOrDescription">Filter by Name or Description:</label>
+        <input
+            type="text" 
+            id="filterByNameOrDescription"
+            [(ngModel)]="filterQuery"
+            placeholder="Enter search term..."
+            (input)="applyFilter()" />
+    </div>
+
+    <!-- Product list -->
+    <div *ngIf="filteredProducts.length > 0; else noItemsMessage">
+        <div *ngFor="let product of filteredProducts; let i = index" class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img [src]="'http://localhost:3000' + product.image" class="card-img-top img-fluid product-image" [alt]="product.name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Category: {{ product.category }}</p>
+                        <p class="card-text">Description: {{ product.description }}</p>
+                        <p class="card-text">Price: {{ product.price.toFixed(2) }}€</p>
+
+                        <!-- Add to cart button -->
+                        <button (click)="addToCart(product)">Add to Cart</button>
+
+                        <!-- Favorite button -->
+                        <button (click)="toggleFavorite(product)">
+                            {{ favoriteStatus[product.id] ? 'Remove from Favorites' : 'Add to Favorites' }}
+                        </button>
+  
+                        <!-- Delete button for admins -->
+                        <button *ngIf="isAdmin" (click)="deleteProduct(product.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination controls -->
+    <div class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <!-- Assuming totalPages() is implemented in your component -->
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+    </div>
+
+    <!-- No items message, displayed when there are no items -->
+    <ng-template #noItemsMessage>
+        <p>No items to display.</p>
+    </ng-template>
+</div>
